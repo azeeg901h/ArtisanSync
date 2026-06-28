@@ -3,47 +3,123 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ArtisanSync | On-Demand Industrial Services Marketplace</title>
+    <title>ArtisanSync | On-Demand Services Marketplace</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <!-- ROLE SELECTION SCREEN -->
-    <div id="role-gate" class="role-gate-overlay">
+    <!-- SIGN UP PAGE -->
+    <div id="auth-screen" class="auth-screen">
+        <div class="auth-card" id="auth-card">
+
+            <div class="auth-logo">
+                <div class="logo-wrap" id="logo-wrap">
+                    <svg class="logo-svg" id="logo-svg" width="56" height="56" viewBox="0 0 48 48" fill="none">
+                        <polygon class="hex-outer" points="24,4 44,14 44,34 24,44 4,34 4,14" fill="none" stroke="#00e5a0" stroke-width="2.5"/>
+                        <polygon class="hex-inner" points="24,12 36,18 36,30 24,36 12,30 12,18" fill="none" stroke="#00e5a0" stroke-width="1.5" opacity="0.5"/>
+                        <circle class="center-dot" cx="24" cy="24" r="4" fill="#00e5a0"/>
+                    </svg>
+                </div>
+                <span class="auth-brand-name" id="auth-brand-name">ArtisanSync</span>
+            </div>
+
+            <!-- SIGNUP FORM -->
+            <div id="signup-form">
+                <h2>Create your account</h2>
+                <p class="auth-subtitle">Join the verified industrial services marketplace.</p>
+                <div class="auth-input-row">
+                    <label>Full Name</label>
+                    <input type="text" id="signup-name" placeholder="e.g. Chukwuemeka Okafor" autocomplete="name">
+                    <span class="input-error" id="name-error"></span>
+                </div>
+                <div class="auth-input-row">
+                    <label>Email Address</label>
+                    <input type="email" id="signup-email" placeholder="you@example.com" autocomplete="email">
+                    <span class="input-error" id="email-error"></span>
+                </div>
+                <div class="auth-input-row">
+                    <label>Phone Number</label>
+                    <input type="tel" id="signup-phone" placeholder="+234 800 000 0000" autocomplete="tel">
+                    <span class="input-error" id="phone-error"></span>
+                </div>
+                <div class="auth-input-row">
+                    <label>Password</label>
+                    <input type="password" id="signup-password" placeholder="At least 6 characters" autocomplete="new-password">
+                    <span class="input-error" id="password-error"></span>
+                </div>
+                <button class="auth-btn" onclick="App.signUp()">Create Account →</button>
+                <p class="auth-switch">Already have an account? <span onclick="App.showSignIn()">Sign in</span></p>
+                <p class="auth-note">🇳🇬 Nigeria-first platform. Built for Lagos and beyond.</p>
+            </div>
+
+            <!-- SIGNIN FORM -->
+            <div id="signin-form" class="auth-hidden">
+                <h2>Welcome back</h2>
+                <p class="auth-subtitle">Sign in to continue to your dashboard.</p>
+                <div class="auth-input-row">
+                    <label>Email Address</label>
+                    <input type="email" id="signin-email" placeholder="you@example.com" autocomplete="email">
+                    <span class="input-error" id="signin-email-error"></span>
+                </div>
+                <div class="auth-input-row">
+                    <label>Password</label>
+                    <input type="password" id="signin-password" placeholder="Your password" autocomplete="current-password">
+                    <span class="input-error" id="signin-password-error"></span>
+                </div>
+                <button class="auth-btn" onclick="App.signIn()">Sign In →</button>
+                <p class="auth-switch">Don't have an account? <span onclick="App.showSignUp()">Sign up</span></p>
+                <p class="auth-note">🇳🇬 Nigeria-first platform. Built for Lagos and beyond.</p>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- ROLE GATE -->
+    <div id="role-gate" class="role-gate-overlay auth-hidden">
         <div class="role-gate-card">
             <div class="role-gate-logo">
-                <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <svg width="40" height="40" viewBox="0 0 48 48" fill="none">
                     <polygon points="24,4 44,14 44,34 24,44 4,34 4,14" fill="none" stroke="#00e5a0" stroke-width="2.5"/>
                     <polygon points="24,12 36,18 36,30 24,36 12,30 12,18" fill="none" stroke="#00e5a0" stroke-width="1.5" opacity="0.5"/>
                     <circle cx="24" cy="24" r="4" fill="#00e5a0"/>
                 </svg>
-                <span>ArtisanSync</span>
+                <span class="gate-brand-name">ArtisanSync</span>
             </div>
-            <h1>Who are you joining as?</h1>
+            <h1 id="role-gate-greeting">Who are you joining as?</h1>
             <p>Select your role to access your personalised dashboard.</p>
             <div class="role-choice-grid">
-                <button class="role-choice-btn" id="btn-client" onclick="App.selectRole('client')">
+                <button class="role-choice-btn" onclick="App.selectRole('client')">
                     <div class="role-icon">🏗️</div>
-                    <strong>Client</strong>
-                    <span>Contractor or Property Developer looking to hire skilled artisans for projects.</span>
+                    <strong>I am a Client</strong>
+                    <span>I need to find, vet, and hire capable professionals to get my project done right — on time and within budget.</span>
+                    <ul class="role-features">
+                        <li>✓ Live artisan discovery grid</li>
+                        <li>✓ Filter by specialty & location</li>
+                        <li>✓ Project cost calculator</li>
+                    </ul>
                 </button>
-                <button class="role-choice-btn" id="btn-artisan" onclick="App.selectRole('artisan')">
+                <button class="role-choice-btn" onclick="App.selectRole('artisan')">
                     <div class="role-icon">🔧</div>
-                    <strong>Artisan</strong>
-                    <span>Skilled professional offering painting, freight, or machining services.</span>
+                    <strong>I am an Artisan</strong>
+                    <span>I am a skilled professional with a service to offer. I want clients to find me, trust me, and book me.</span>
+                    <ul class="role-features">
+                        <li>✓ View active bookings</li>
+                        <li>✓ Track your earnings</li>
+                        <li>✓ Manage your project days</li>
+                    </ul>
                 </button>
             </div>
+            <p class="role-gate-note">🇳🇬 Nigeria-first platform.<br>Built for Lagos and beyond.</p>
         </div>
     </div>
 
     <!-- MAIN APP -->
-    <div id="main-app" class="app-hidden">
+    <div id="main-app" class="auth-hidden">
 
-        <!-- HEADER -->
         <header class="site-header">
             <div class="header-inner">
                 <div class="brand-zone">
-                    <svg width="36" height="36" viewBox="0 0 48 48" fill="none">
+                    <svg class="header-logo-svg" width="32" height="32" viewBox="0 0 48 48" fill="none">
                         <polygon points="24,4 44,14 44,34 24,44 4,34 4,14" fill="none" stroke="#00e5a0" stroke-width="2.5"/>
                         <polygon points="24,12 36,18 36,30 24,36 12,30 12,18" fill="none" stroke="#00e5a0" stroke-width="1.5" opacity="0.5"/>
                         <circle cx="24" cy="24" r="4" fill="#00e5a0"/>
@@ -53,29 +129,32 @@
                 </div>
                 <nav class="header-nav">
                     <button class="nav-btn active" data-tab="discover" onclick="App.switchTab('discover')">
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
-                        Discover Artisans
+                        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+                        Discover
                     </button>
                     <button class="nav-btn" data-tab="projects" onclick="App.switchTab('projects')">
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
-                        Active Projects
+                        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+                        Projects
                     </button>
                     <button class="nav-btn" data-tab="escrow" onclick="App.switchTab('escrow')">
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
-                        Escrow Ledger
+                        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+                        Cost Calculator
+                    </button>
+                    <button class="nav-btn" data-tab="profile" onclick="App.switchTab('profile')">
+                        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+                        My Profile
                     </button>
                 </nav>
-                <button class="switch-role-btn" onclick="App.switchRole()">Switch Role</button>
+                <button class="logout-btn" onclick="App.logOut()">Log Out</button>
             </div>
         </header>
 
-        <!-- TAB: DISCOVER -->
         <div id="tab-discover" class="tab-panel active-panel">
             <div class="panel-wrapper">
                 <div class="panel-head">
                     <div>
                         <h2>Discover Verified Artisans</h2>
-                        <p>Browse our network of screened industrial specialists across Nigeria.</p>
+                        <p>Browse verified professionals ready to take on your project — whatever it is.</p>
                     </div>
                     <div class="filter-bar">
                         <select id="filter-specialty" onchange="App.filterArtisans()">
@@ -83,6 +162,12 @@
                             <option value="painter">Painters</option>
                             <option value="freight">Freight Operators</option>
                             <option value="machinist">Structural Machinists</option>
+                            <option value="electrician">Electricians</option>
+                            <option value="tiler">Tilers</option>
+                            <option value="welder">Welders</option>
+                            <option value="plumber">Plumbers</option>
+                            <option value="carpenter">Carpenters</option>
+                            <option value="mason">Masons</option>
                         </select>
                         <select id="filter-location" onchange="App.filterArtisans()">
                             <option value="all">All Locations</option>
@@ -90,6 +175,7 @@
                             <option value="Abuja">Abuja</option>
                             <option value="Port Harcourt">Port Harcourt</option>
                             <option value="Ibadan">Ibadan</option>
+                            <option value="Kano">Kano</option>
                         </select>
                         <select id="filter-rate" onchange="App.filterArtisans()">
                             <option value="all">Any Daily Rate</option>
@@ -99,6 +185,23 @@
                         </select>
                     </div>
                 </div>
+
+                <!-- AI RECOMMENDATION BOX -->
+                <div class="ai-suggest-box">
+                    <div class="ai-suggest-header">
+                        <span class="ai-suggest-icon">🤖</span>
+                        <div>
+                            <h4>Not sure who you need?</h4>
+                            <p>Describe your project and our AI will recommend the right professional for you.</p>
+                        </div>
+                    </div>
+                    <div class="ai-suggest-input-row">
+                        <input type="text" id="ai-project-input" placeholder="e.g. I want to paint my 4-bedroom house exterior and fix the iron gate..." maxlength="200">
+                        <button onclick="App.getAISuggestion()" id="ai-suggest-btn">Ask AI →</button>
+                    </div>
+                    <div id="ai-suggest-result" class="ai-suggest-result" style="display:none;"></div>
+                </div>
+
                 <div id="artisan-grid" class="artisan-grid"></div>
             </div>
         </div>
@@ -109,114 +212,142 @@
                 <div class="panel-head">
                     <div>
                         <h2 id="projects-title">Active Projects</h2>
-                        <p id="projects-subtitle">Track your ongoing bookings and milestone progress.</p>
+                        <p id="projects-subtitle">See all your active project bookings and the total amount committed.</p>
                     </div>
                 </div>
                 <div id="projects-content"></div>
             </div>
         </div>
 
-        <!-- TAB: ESCROW LEDGER -->
+        <!-- TAB: COST CALCULATOR -->
         <div id="tab-escrow" class="tab-panel">
             <div class="panel-wrapper">
                 <div class="panel-head">
                     <div>
-                        <h2>Escrow Ledger &amp; Cost Calculator</h2>
-                        <p>Generate a verified milestone quote before committing to any booking.</p>
+                        <h2>Project Cost Calculator</h2>
+                        <p>Calculate your project cost before booking. Projects longer than 10 days automatically get a 10% loyalty discount.</p>
                     </div>
                 </div>
                 <div class="escrow-workspace">
-                    <!-- FORM -->
                     <div class="escrow-form-card">
-                        <h3>Configure Project Parameters</h3>
+                        <h3>Set Up Your Project</h3>
                         <div class="form-row">
-                            <label for="esc-specialty">Artisan Specialty</label>
+                            <label for="esc-specialty">What type of worker do you need?</label>
                             <select id="esc-specialty">
-                                <option value="painter">Premium Painter — ₦25,000/day</option>
+                                <option value="painter">Painter — ₦25,000/day</option>
                                 <option value="freight">Freight Operator — ₦35,000/day</option>
                                 <option value="machinist">Structural Machinist — ₦45,000/day</option>
-                                <option value="tiler">Professional Tiler — ₦20,000/day</option>
-                                <option value="welder">Industrial Welder — ₦30,000/day</option>
+                                <option value="tiler">Tiler — ₦20,000/day</option>
+                                <option value="welder">Welder — ₦30,000/day</option>
                                 <option value="electrician">Electrician — ₦28,000/day</option>
+                                <option value="plumber">Plumber — ₦22,000/day</option>
+                                <option value="carpenter">Carpenter — ₦18,000/day</option>
+                                <option value="mason">Mason — ₦15,000/day</option>
+                                <option value="other">Other — Enter your specialist type below</option>
                             </select>
                         </div>
-                        <div class="form-row">
-                            <label for="esc-days">Estimated Project Days</label>
-                            <input type="number" id="esc-days" placeholder="e.g. 14" min="1">
+                        <div id="custom-specialty-row" class="form-row" style="display:none;">
+                            <label for="esc-custom-specialty">Describe your specialist</label>
+                            <input type="text" id="esc-custom-specialty" placeholder="e.g. AC Technician, Interior Designer, CCTV Installer" maxlength="50">
                         </div>
                         <div class="form-row">
-                            <label for="esc-logistics">Logistics Route Tier</label>
+                            <label for="esc-days">How many days will the project take? <span style="color:var(--accent);font-size:0.75rem;">(1–365)</span></label>
+                            <input type="number" id="esc-days" placeholder="e.g. 14" min="1" max="365">
+                        </div>
+                        <div class="form-row">
+                            <label for="esc-logistics">Do you need materials delivered?</label>
                             <select id="esc-logistics">
-                                <option value="0">No logistics needed — ₦0</option>
-                                <option value="15000">Lagos Intra-City Route — ₦15,000 min.</option>
-                                <option value="35000">Lagos-Abuja Corridor — ₦35,000 min.</option>
-                                <option value="50000">Southwest Regional Route — ₦50,000 min.</option>
-                                <option value="80000">Cross-Country Freight Line — ₦80,000 min.</option>
+                                <option value="0">No delivery needed — ₦0</option>
+                                <option value="15000">Lagos Intra-City — ₦15,000 min.</option>
+                                <option value="35000">Lagos to Abuja — ₦35,000 min.</option>
+                                <option value="50000">Southwest Region — ₦50,000 min.</option>
+                                <option value="80000">Cross-Country — ₦80,000 min.</option>
                             </select>
                         </div>
                         <div class="form-row toggle-row">
-                            <label>Include Bulk Material Haulage</label>
+                            <label>Add bulk materials transport <span style="color:var(--text-secondary);font-size:0.75rem;">(+₦20,000)</span></label>
                             <label class="toggle-switch">
                                 <input type="checkbox" id="esc-haulage">
                                 <span class="toggle-track"></span>
                             </label>
                         </div>
-                        <div id="haulage-note" class="haulage-note app-hidden">
-                            +₦20,000 bulk material surcharge will be added.
+                        <div id="haulage-note" class="haulage-note auth-hidden">
+                            ⚠️ An extra ₦20,000 will be added for transporting bulk materials to your site.
+                        </div>
+                        <div class="discount-hint">
+                            💡 Book for more than 10 days and you automatically save 10% on labour costs.
                         </div>
                         <button class="generate-btn" onclick="App.generateLedger()">
                             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
-                            Generate Verified Milestone Ledger
+                            Calculate My Project Cost
                         </button>
                     </div>
-
-                    <!-- RESULTS -->
                     <div class="escrow-results-card">
-                        <h3>Project Cost Breakdown</h3>
+                        <h3>Here is your cost breakdown</h3>
                         <div id="escrow-empty" class="escrow-empty">
                             <span>📋</span>
-                            <p>Configure your project on the left and click Generate to see your cost breakdown.</p>
+                            <p>Set up your project on the left and click Calculate to see your full cost breakdown.</p>
                         </div>
-                        <div id="escrow-output" class="app-hidden">
+                        <div id="escrow-output" class="auth-hidden">
                             <div class="ledger-summary-block">
-                                <div class="ledger-row">
-                                    <span>Artisan Specialty</span>
-                                    <strong id="out-specialty">—</strong>
-                                </div>
-                                <div class="ledger-row">
-                                    <span>Daily Rate</span>
-                                    <strong id="out-rate">—</strong>
-                                </div>
-                                <div class="ledger-row">
-                                    <span>Project Duration</span>
-                                    <strong id="out-days">—</strong>
-                                </div>
+                                <div class="ledger-row"><span>Worker Type</span><strong id="out-specialty">—</strong></div>
+                                <div class="ledger-row"><span>Daily Rate</span><strong id="out-rate">—</strong></div>
+                                <div class="ledger-row"><span>Project Duration</span><strong id="out-days">—</strong></div>
                                 <div class="ledger-row discount-row" id="discount-row" style="display:none;">
-                                    <span>Volume Discount (10%)</span>
+                                    <span>10% Loyalty Discount — You Saved</span>
                                     <strong id="out-discount" class="discount-text">—</strong>
                                 </div>
                             </div>
                             <div class="ledger-invoice-block">
-                                <div class="invoice-row">
-                                    <span>Base Artisan Labor Subtotal</span>
-                                    <span id="out-labor">₦0</span>
-                                </div>
-                                <div class="invoice-row">
-                                    <span>Freight Logistics Allocation Levy</span>
-                                    <span id="out-logistics">₦0</span>
-                                </div>
-                                <div class="invoice-row">
-                                    <span>Bulk Material Haulage</span>
-                                    <span id="out-haulage">₦0</span>
-                                </div>
-                                <div class="invoice-row total-row">
-                                    <span>Secure Escrow Project Total</span>
-                                    <span id="out-total">₦0</span>
-                                </div>
+                                <div class="invoice-row"><span>Artisan Labour Cost</span><span id="out-labor">₦0</span></div>
+                                <div class="invoice-row"><span>Delivery &amp; Transport Cost</span><span id="out-logistics">₦0</span></div>
+                                <div class="invoice-row"><span>Bulk Materials Transport Fee</span><span id="out-haulage">₦0</span></div>
+                                <div class="invoice-row total-row"><span>Total Project Cost</span><span id="out-total">₦0</span></div>
                             </div>
-                            <button class="book-now-btn" onclick="App.confirmBooking()">
-                                Confirm &amp; Add to Active Projects
-                            </button>
+                            <button class="book-now-btn" onclick="App.confirmBooking()">✅ Confirm Booking</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- TAB: PROFILE -->
+        <div id="tab-profile" class="tab-panel">
+            <div class="panel-wrapper">
+                <div class="panel-head">
+                    <div>
+                        <h2>My Profile</h2>
+                        <p>Your account details as registered on ArtisanSync.</p>
+                    </div>
+                </div>
+                <div class="profile-card">
+                    <div class="profile-avatar-block">
+                        <div class="profile-avatar" id="profile-avatar">👤</div>
+                        <div>
+                            <h3 id="profile-name-display">—</h3>
+                            <span id="profile-role-display" class="role-badge"></span>
+                        </div>
+                    </div>
+                    <div class="profile-details-grid">
+                        <div class="profile-detail-row">
+                            <span>Full Name</span>
+                            <strong id="pd-name">—</strong>
+                        </div>
+                        <div class="profile-detail-row">
+                            <span>Email Address</span>
+                            <strong id="pd-email">—</strong>
+                        </div>
+                        <div class="profile-detail-row">
+                            <span>Phone Number</span>
+                            <strong id="pd-phone">—</strong>
+                        </div>
+                        <div class="profile-detail-row">
+                            <span>Account Role</span>
+                            <strong id="pd-role">—</strong>
+                        </div>
+                        <div class="profile-detail-row">
+                            <span>Member Since</span>
+                            <strong id="pd-joined">—</strong>
                         </div>
                     </div>
                 </div>
@@ -226,12 +357,12 @@
     </div>
 
     <!-- BOOKING MODAL -->
-    <div id="booking-modal" class="modal-overlay app-hidden">
+    <div id="booking-modal" class="modal-overlay auth-hidden">
         <div class="modal-card">
             <div class="modal-icon">✅</div>
-            <h3>Project Added to Escrow</h3>
-            <p id="modal-message">Your booking has been secured and added to your active projects ledger.</p>
-            <button onclick="App.closeModal()">View Active Projects</button>
+            <h3>Booking Confirmed!</h3>
+            <p id="modal-message">Your project has been added to your active bookings.</p>
+            <button onclick="App.closeModal()">View Active Projects →</button>
         </div>
     </div>
 
