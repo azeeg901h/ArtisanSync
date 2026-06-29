@@ -21,8 +21,11 @@ export default async function handler(req, res) {
                     role: 'user',
                     content: `A client described their project as: "${query}". 
                     Recommend which type of professional they need from:
-                    Painter, Freight Operator, Structural Machinist, Electrician, Tiler, Welder, Plumber, Carpenter, Mason.
-                    Keep it short and friendly.`
+                    A client described their project as: "${query}"
+
+Based on this, recommend which type of professional(s) they need from this list: Painter, Freight Operator, Structural Machinist, Electrician, Tiler, Welder, Plumber, Carpenter, Mason.
+
+Give a short, friendly, plain-English response (2-3 sentences max). Name the professional type clearly, briefly explain why, and mention a rough daily rate in Naira if relevant. Do not use bullet points or headers.`
                 }]
             })
         });
